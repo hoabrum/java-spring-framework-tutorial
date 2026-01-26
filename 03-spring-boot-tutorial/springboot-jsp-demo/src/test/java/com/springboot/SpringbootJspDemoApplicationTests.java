@@ -8,6 +8,6 @@ class SpringbootJspDemoApplicationTests {
 
     @Test
     void contextLoads() {
-    }
 
+    }
 }
