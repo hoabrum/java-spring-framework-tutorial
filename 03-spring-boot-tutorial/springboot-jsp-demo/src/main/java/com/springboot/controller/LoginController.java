@@ -27,12 +27,13 @@ public class LoginController {
     public String doLogin(HttpServletRequest request) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession(true);
         boolean isLoggedIn = loginService.isLoggedIn(email, password);
+        System.out.println("isLoggedIn: " + isLoggedIn);
         if (isLoggedIn) {
+            session.setAttribute("loggedInUser", email);
             return "redirect:/home";
         }
-        HttpSession session = request.getSession(true);
-        session.setAttribute("loggedInUser", email);
         request.setAttribute("error", "Invalid email or password");
         return "login";
     }
