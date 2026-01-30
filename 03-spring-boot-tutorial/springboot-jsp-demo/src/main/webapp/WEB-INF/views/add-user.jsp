@@ -6,48 +6,41 @@
       rel="stylesheet" type="text/css">
 
 <html>
-<title>Home Page</title>
+<title>User Details Info</title>
 <head>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<h1>Welcome to Spring Boot and JSP</h1>
-<h2><c:out value="${message}"></c:out></h2>
-<h3>
-    User List
-</h3>
-<div>
-    <a href="${pageContext.request.contextPath}/add-user" >Add User</a>
-</div>
+
+<H1>Add User</H1>
+
 <div class="container-fluid">
-
-    <table class="table table-inverse">
-        <thead>
+    <form action="${pageContext.request.contextPath}/add-user" method="post">
+        <table border="1" width="30%" cellpadding="1" cellspacing="1">
+            <th>
+                <tr></tr>
+                <tr></tr>
+            </th>
             <tr>
-                <th>#</th>
-                <th>Email</th>
-                <th>Address</th>
+                <td>Email</td>
+                <td><input type="text" name="email" required></td>
             </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${users}" var="user">
-                <tr>
-                    <th scope="row">${user.id}</th>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/user-details?id=${user.id}">
-                                ${user.email}
-                        </a>
-                    </td>
-                    <td>${user.address}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" name="password" required> </td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type = "text" name="address"> </td>
+            </tr><tr>
+            <td></td>
+            <td><button type="submit">Submit</button></td>
+        </tr>
 
-
+        </table>
+    </form>
 </div>
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

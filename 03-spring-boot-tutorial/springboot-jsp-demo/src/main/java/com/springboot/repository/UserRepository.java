@@ -9,4 +9,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     //SELECT * FROM users WHERE email = ? and password = ?
     User findByEmailAndPassword(String email, String password);
+
 }

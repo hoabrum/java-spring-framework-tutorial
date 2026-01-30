@@ -6,48 +6,41 @@
       rel="stylesheet" type="text/css">
 
 <html>
-<title>Home Page</title>
+<title>User Details Info</title>
 <head>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<h1>Welcome to Spring Boot and JSP</h1>
-<h2><c:out value="${message}"></c:out></h2>
-<h3>
-    User List
-</h3>
-<div>
-    <a href="${pageContext.request.contextPath}/add-user" >Add User</a>
-</div>
+
+<H1>User Details Info</H1>
+
 <div class="container-fluid">
 
-    <table class="table table-inverse">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Email</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${users}" var="user">
-                <tr>
-                    <th scope="row">${user.id}</th>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/user-details?id=${user.id}">
-                                ${user.email}
-                        </a>
-                    </td>
-                    <td>${user.address}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
+    <table border="1" width="30%" cellpadding="1" cellspacing="1">
+        <th>
+            <tr></tr>
+            <tr></tr>
+        </th>
+        <tr>
+            <td>Id</td>
+            <td>${user.id}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>${user.email}</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>${user.password}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>${user.address}</td>
+        </tr>
     </table>
 
-
 </div>
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
