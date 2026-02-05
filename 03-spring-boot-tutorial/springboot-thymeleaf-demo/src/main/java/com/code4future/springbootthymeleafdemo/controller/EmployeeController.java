@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/employees")
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -19,7 +20,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/add-new")
+    @GetMapping("/new")
     public String addNewEmployee(Model model) {
         model.addAttribute("employee", new EmployeeForm());
         return "add-employee";
@@ -40,7 +41,7 @@ public class EmployeeController {
         return "redirect:/home";
     }
 
-    @GetMapping("/showEmployeeEditForm/{id}")
+    @GetMapping("/edit/{id}")
     public String showEmployeeEditForm(@PathVariable Long id, Model model) {
         Employee employee = employeeService.findById(id);
         EmployeeForm form = new EmployeeForm();
@@ -49,7 +50,7 @@ public class EmployeeController {
         return "edit-employee";
     }
 
-    @GetMapping("/deleteEmployee/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteEmployeeById(@PathVariable Long id) {
         employeeService.deleteById(id);
         return "redirect:/home";
