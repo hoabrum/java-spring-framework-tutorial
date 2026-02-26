@@ -1,0 +1,36 @@
+body {
+    background-color: #fcfcfc;
+    padding: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+/* Bold, dark labels from the image */
+label.form-label {
+    font-weight: 800;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* Input styling */
+.form-control, .form-select {
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.text-danger {
+    color: #d9534f !important;
+    margin-left: 4px;
+}
+
+.form-check-label {
+    font-weight: 500;
+    color: #555;
+    margin-left: 5px;
+}
