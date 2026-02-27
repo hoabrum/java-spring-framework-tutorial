@@ -1,6 +1,6 @@
 package com.code4future.springbootthymeleafdemo.controller;
 
-import com.code4future.springbootthymeleafdemo.dto.UserForm;
+import com.code4future.springbootthymeleafdemo.dto.form.UserForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,6 @@
 package com.code4future.springbootthymeleafdemo.controller;
 
-import com.code4future.springbootthymeleafdemo.dto.LoginForm;
-import jakarta.servlet.http.HttpServletRequest;
+import com.code4future.springbootthymeleafdemo.dto.form.LoginForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

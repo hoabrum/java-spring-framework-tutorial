@@ -1,4 +1,4 @@
-package com.code4future.springbootthymeleafdemo.dto;
+package com.code4future.springbootthymeleafdemo.dto.form;
 
 import java.util.List;
 

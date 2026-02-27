@@ -1,0 +1,19 @@
+@startuml
+class com.code4future.springbootthymeleafdemo.entity.Employee {
+- Long id
+- String fullName
+- String email
+- String address
++ Long getId()
++ void setId(Long)
++ String getFullName()
++ void setFullName(String)
++ String getEmail()
++ void setEmail(String)
++ String getAddress()
++ void setAddress(String)
++ String toString()
+}
+
+
+@enduml

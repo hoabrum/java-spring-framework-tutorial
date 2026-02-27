@@ -1,6 +1,6 @@
 package com.code4future.springbootthymeleafdemo.controller;
 
-import com.code4future.springbootthymeleafdemo.dto.EmployeeForm;
+import com.code4future.springbootthymeleafdemo.dto.form.LoginForm;
 import com.code4future.springbootthymeleafdemo.entity.Employee;
 import com.code4future.springbootthymeleafdemo.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -22,12 +22,12 @@ public class EmployeeController {
 
     @GetMapping("/new")
     public String addNewEmployee(Model model) {
-        model.addAttribute("employee", new EmployeeForm());
+        model.addAttribute("employee", new LoginForm.EmployeeForm());
         return "add-employee";
     }
 
     @PostMapping("/save")
-    public String saveEmployeeInfo(@Valid @ModelAttribute("employee") EmployeeForm employee, BindingResult bindingResult) {
+    public String saveEmployeeInfo(@Valid @ModelAttribute("employee") LoginForm.EmployeeForm employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             if (employee.getId() == null) {
                 return "add-employee";
@@ -44,7 +44,7 @@ public class EmployeeController {
     @GetMapping("/edit/{id}")
     public String showEmployeeEditForm(@PathVariable Long id, Model model) {
         Employee employee = employeeService.findById(id);
-        EmployeeForm form = new EmployeeForm();
+        LoginForm.EmployeeForm form = new LoginForm.EmployeeForm();
         BeanUtils.copyProperties(employee, form);
         model.addAttribute("employee", form);
         return "edit-employee";
