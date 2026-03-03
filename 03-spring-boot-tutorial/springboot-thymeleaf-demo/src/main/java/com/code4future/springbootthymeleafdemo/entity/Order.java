@@ -1,6 +1,7 @@
 package com.code4future.springbootthymeleafdemo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class Order {
     @Column(name = "shipping_address")
     private String shippingAddress;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -64,5 +66,14 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                '}';
     }
 }
