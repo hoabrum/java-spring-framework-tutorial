@@ -1,7 +1,7 @@
 package com.code4future.springbootthymeleafdemo.controller;
 
 import com.code4future.springbootthymeleafdemo.entity.Order;
-import com.code4future.springbootthymeleafdemo.repository.custom.OrderRepository;
+import com.code4future.springbootthymeleafdemo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,20 +17,20 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @GetMapping("/add")
     public @ResponseBody String  createOrder() {
         Order order = new Order();
         order.setOrderDate(LocalDateTime.now());
         order.setShippingAddress("FPT University Thach That");
-        orderRepository.save(order);
+        orderService.save(order);
         return order.toString();
     }
 
     @GetMapping("/filter/{fullName}")
     public @ResponseBody List<Order> fetOrdersByCustomer(@PathVariable String fullName) {
-        List<Order> orders = orderRepository.findByCustomer(fullName);
+        List<Order> orders = orderService.findByCustomer(fullName);
         return orders;
     }
 }

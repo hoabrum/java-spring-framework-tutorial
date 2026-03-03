@@ -17,7 +17,6 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Autowired
     private EntityManager entityManager;
 
-    @Transactional
     @Override
     public void save(Order order) {
         entityManager.persist(order);
