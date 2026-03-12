@@ -1,0 +1,132 @@
+@startuml Student Management App - Class Diagram
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+' ─────────────────────────────────────────
+' Packages
+' ─────────────────────────────────────────
+
+package "com.code4future.javafxdemo" {
+    class Main {
+        - context : AnnotationConfigApplicationContext
+        + init() : void
+        + start(stage : Stage) : void
+        + stop() : void
+        + main(args : String[]) : void
+    }
+}
+
+package "com.code4future.javafxdemo.config" {
+    class AppConfig <<@Configuration\n@ComponentScan>> {
+        + connection() : Connection
+    }
+}
+
+package "com.code4future.javafxdemo.utils" {
+    class DbUtil {
+        + {static} getConnection() : Connection
+    }
+}
+
+package "com.code4future.javafxdemo.entity" {
+    class Student {
+        - id : StringProperty
+        - name : StringProperty
+        - phone : StringProperty
+        - course : StringProperty
+        + idProperty() : StringProperty
+        + nameProperty() : StringProperty
+        + phoneProperty() : StringProperty
+        + courseProperty() : StringProperty
+        + getId() : String
+        + getName() : String
+        + getPhone() : String
+        + getCourse() : String
+        + setId(id : String) : void
+        + setName(name : String) : void
+        + setPhone(phone : String) : void
+        + setCourse(course : String) : void
+    }
+}
+
+package "com.code4future.javafxdemo.controller" {
+    class RegistrationController <<@Component>> {
+        - studentService : StudentService
+        - myIndex : int
+        - id : int
+        + Add() : void
+        + Update(event : ActionEvent) : void
+        + Delete(event : ActionEvent) : void
+        + table() : void
+        + initialize(url : URL, rb : ResourceBundle) : void
+    }
+}
+
+package "com.code4future.javafxdemo.service" {
+    interface StudentService <<interface>> {
+        + findAll() : List<Student>
+        + insert(student : Student) : void
+        + update(student : Student) : void
+        + delete(id : int) : void
+    }
+}
+
+package "com.code4future.javafxdemo.service.impl" {
+    class StudentServiceImpl <<@Service>> {
+        - studentDao : StudentDao
+        + findAll() : List<Student>
+        + insert(student : Student) : void
+        + update(student : Student) : void
+        + delete(id : int) : void
+    }
+}
+
+package "com.code4future.javafxdemo.dao" {
+    interface StudentDao <<interface>> {
+        + findAll() : List<Student>
+        + insert(student : Student) : void
+        + update(student : Student) : void
+        + delete(id : int) : void
+    }
+}
+
+package "com.code4future.javafxdemo.dao.impl" {
+    class StudentDaoImpl <<@Repository>> {
+        - con : Connection
+        + findAll() : List<Student>
+        + insert(student : Student) : void
+        + update(student : Student) : void
+        + delete(id : int) : void
+    }
+}
+
+' ─────────────────────────────────────────
+' Relationships
+' ─────────────────────────────────────────
+
+' Spring bootstrap
+Main ..> AppConfig           : loads >
+Main ..> RegistrationController : "controllerFactory\n(context::getBean)" >
+
+' Config wires the connection
+AppConfig ..> DbUtil         : calls >
+AppConfig ..> StudentDaoImpl : "@Bean\nConnection injected into" >
+
+' Implementation relationships
+StudentServiceImpl ..|> StudentService  : implements
+StudentDaoImpl     ..|> StudentDao      : implements
+
+' Dependency injection (Spring @Autowired)
+RegistrationController "1" o-- "1" StudentService   : "@Autowired\nstudentService"
+StudentServiceImpl     "1" o-- "1" StudentDao        : "@Autowired\nstudentDao"
+StudentDaoImpl         "1" o-- "1" Connection        : "@Autowired\ncon"
+
+' Data model usage
+RegistrationController ..> Student : uses >
+StudentServiceImpl     ..> Student : uses >
+StudentDaoImpl         ..> Student : uses >
+
+@enduml
